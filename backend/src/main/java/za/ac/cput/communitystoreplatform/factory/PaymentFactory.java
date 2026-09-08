@@ -18,6 +18,7 @@ public class PaymentFactory {
                 && Helper.isPositive(amount)
                 && !Helper.isNullOrEmpty(paymentStatus)
                 && !Helper.isNull(paymentDate)) {
+
             return new Payment.Builder()
                     .setPaymentId(paymentId)
                     .setOrderId(orderId)
