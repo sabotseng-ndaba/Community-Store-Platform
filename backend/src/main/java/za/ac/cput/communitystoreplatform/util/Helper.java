@@ -26,4 +26,11 @@ public class Helper {
     public static boolean isPositive(double value) {
         return value > 0;
     }
+
+    public static boolean isValidCode(int code){
+        if(code <1000 || code> 9999){
+            return false;
+        }
+        return true;
+    }
 }
