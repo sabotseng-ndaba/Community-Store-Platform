@@ -1,11 +1,16 @@
 package za.ac.cput.communitystoreplatform.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
     private int orderId;
@@ -14,6 +19,9 @@ public class Order {
     private String orderStatus;
     private double totalAmount;
     private String shippingAddress;
+
+    @Transient
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     protected Order() {
     }
@@ -59,8 +67,18 @@ public class Order {
         this.orderStatus = "CANCELLED";
     }
 
+    public void setOrderDetails(List<OrderItem> orderItems) {
+        if (orderItems != null) {
+            this.orderItems = orderItems;
+        }
+    }
+
+    public void addOrderDetail(OrderItem orderItem) {
+        this.orderItems.add(orderItem);
+    }
+
     public List<OrderItem> getOrderDetails() {
-        return null;
+        return this.orderItems;
     }
 
     public static class Builder {

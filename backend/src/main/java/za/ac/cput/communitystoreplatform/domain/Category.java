@@ -1,6 +1,7 @@
 package za.ac.cput.communitystoreplatform.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Category {
@@ -19,8 +20,12 @@ public class Category {
 
     public int getCategoryId(){ return categoryId;}
     public String getCategoryName(){ return categoryName;}
-    public String getDescription(){ return description;}
 
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
     public String toString(){
         return "Category { " + "\n" +
                 "Category Id: " + categoryId + "\n" +
