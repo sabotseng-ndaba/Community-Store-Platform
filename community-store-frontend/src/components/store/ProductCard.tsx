@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { Product } from '../../types/product';
+import ProductImage from './ProductImage';
+import { productImageSrc } from '../../utils/productImages';
 import './store.css';
 
 interface ProductCardProps {
@@ -11,6 +13,8 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link to={`/products/${product.productId}`} className="product-card">
+      <ProductImage src={productImageSrc(product)} alt={product.productName} className="product-card__image" />
+
       <div className="product-card__top">
         <h3>{product.productName}</h3>
         {product.ecoFriendly && (

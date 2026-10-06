@@ -2,11 +2,14 @@ import { apiGet } from './client';
 import type { Category } from '../types/category';
 
 // Wraps za.ac.cput.communitystoreplatform.controller.CategoryController
-export const categoryApi = {
-  getAll: () => apiGet<Category[]>('/categories/all'),
+// The backend runs under server.servlet.context-path=/CommunityStore.
+const CATEGORY_PATH = '/CommunityStore/categories';
 
-  getById: (id: number) => apiGet<Category>(`/categories/${id}`),
+export const categoryApi = {
+  getAll: () => apiGet<Category[]>(`${CATEGORY_PATH}/all`),
+
+  getById: (id: number) => apiGet<Category>(`${CATEGORY_PATH}/${id}`),
 
   getByName: (name: string) =>
-    apiGet<Category>(`/categories/name/${encodeURIComponent(name)}`),
+    apiGet<Category>(`${CATEGORY_PATH}/name/${encodeURIComponent(name)}`),
 };

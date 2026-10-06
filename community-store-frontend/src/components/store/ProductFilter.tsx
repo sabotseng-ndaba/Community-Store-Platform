@@ -4,18 +4,18 @@ import './store.css';
 interface ProductFilterProps {
   categories: Category[];
   loading: boolean;
+  filterSupported: boolean;
   selectedCategoryId: number | null;
   onSelect: (categoryId: number | null) => void;
 }
 
-// NOTE: the current backend Product entity has no category reference, and
-// there is no "products by category" endpoint. Selecting a category here
-// does not yet filter the product grid — wire that up once the backend
-// exposes the relationship (e.g. Product.categoryId + a
-// GET /products/category/{id} endpoint, mirroring findByStatus).
+// The backend Product entity has no category reference and there is no
+// "products by category" endpoint, so filterSupported is false until
+// products start carrying a categoryId. Chips are then shown disabled.
 export default function ProductFilter({
   categories,
   loading,
+  filterSupported,
   selectedCategoryId,
   onSelect,
 }: ProductFilterProps) {
@@ -37,6 +37,7 @@ export default function ProductFilter({
     <div className="category-filter">
       <button
         className={`chip${selectedCategoryId === null ? ' active' : ''}`}
+        disabled={!filterSupported}
         onClick={() => onSelect(null)}
       >
         All
@@ -45,7 +46,12 @@ export default function ProductFilter({
         <button
           key={category.categoryId}
           className={`chip${selectedCategoryId === category.categoryId ? ' active' : ''}`}
-          title={category.description}
+          title={
+            filterSupported
+              ? category.description
+              : `${category.description} (filtering not available yet)`
+          }
+          disabled={!filterSupported}
           onClick={() => onSelect(category.categoryId)}
         >
           {category.categoryName}

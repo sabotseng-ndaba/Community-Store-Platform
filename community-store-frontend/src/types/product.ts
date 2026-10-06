@@ -17,4 +17,24 @@ export interface Product {
   dateUpdated: string;
   categoryId?: number;
   categoryName?: string;
+  // The backend Product has no image field yet. Optional so the UI is ready
+  // as soon as it adds one (expected name: imageUrl).
+  imageUrl?: string;
+}
+
+// Shape sent to POST /products/create and PUT /products/update.
+// Mirrors the backend entity exactly (no category fields).
+export interface ProductPayload {
+  productId: number;
+  productName: string;
+  description: string;
+  price: number;
+  quantity: number;
+  condition: string;
+  listingType: string;
+  ecoFriendly: boolean;
+  status: string;
+  dateCreated: string;
+  dateUpdated: string;
+  imageUrl?: string;
 }

@@ -43,7 +43,7 @@ export default function ReviewList({ reviews, loading, error }: ReviewListProps)
           <li key={review.reviewId} className="review-item">
             <div className="review-item__top">
               <span className="review-item__author">
-                {review.user?.name ?? review.user?.username ?? 'Anonymous'}
+                {[review.user?.firstName, review.user?.lastName].filter(Boolean).join(' ') || 'Anonymous'}
               </span>
               <span className="review-item__date">{review.reviewDate}</span>
             </div>

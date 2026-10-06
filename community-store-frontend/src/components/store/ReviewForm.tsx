@@ -9,7 +9,7 @@ interface ReviewFormProps {
   // Supplied by whatever the team's auth/user-context module ends up
   // being. Passing null disables submission with a prompt to sign in,
   // rather than guessing at an auth shape that doesn't exist yet.
-  currentUserId: number | string | null;
+  currentUserId: string | null;
   onSubmitted: () => void;
 }
 

@@ -1,21 +1,28 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Store from './pages/Store'
 import ProductDetails from './pages/ProductDetails'
+import SellProduct from './pages/SellProduct'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Profile from './pages/Profile'
+import SellerProfile from './pages/SellerProfile'
 
-// FE-02 only wires up the routes it owns (Store + Product details).
-// Routes for Home ("/"), About, Cart, Payment and Delivery are left for
-// their respective tickets to add here as those pages get built — same
-// for wrapping everything in the shared Navbar/Footer/Newsletter layout,
-// which are still empty stub files as of this commit. "/" temporarily
-// redirects to "/store" so the app has somewhere to land until Home
-// exists; swap that for a real Home route in FE-01/whichever ticket
-// owns it.
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/store" replace />} />
+
+      {/* FE-02 */}
       <Route path="/store" element={<Store />} />
       <Route path="/products/:id" element={<ProductDetails />} />
+      <Route path="/sell" element={<SellProduct />} />
+      <Route path="/sell/:id" element={<SellProduct />} />
+
+      {/* FE-01 */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/seller-profile" element={<SellerProfile />} />
     </Routes>
   )
 }

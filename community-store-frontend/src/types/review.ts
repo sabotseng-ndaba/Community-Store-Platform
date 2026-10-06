@@ -9,10 +9,11 @@ export interface ReviewProductRef {
   productName?: string;
 }
 
+// Backend User.userId is a String; names are firstName/lastName.
 export interface ReviewUserRef {
-  userId: number | string;
-  name?: string;
-  username?: string;
+  userId: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 export interface Review {
@@ -28,7 +29,7 @@ export interface Review {
 export interface CreateReviewPayload {
   reviewId: string;
   product: { productId: number };
-  user: { userId: number | string };
+  user: { userId: string };
   ratings: number;
   comment: string;
   reviewDate: string;
